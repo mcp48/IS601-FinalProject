@@ -5,4 +5,7 @@ The goal of this project is to create a flask application that is based on the t
 Also, a note to the professor and TA's.  Rather than just modify my current project, I found it easier to create a new project from scratch, and copy and paste the original code from project 3 to start off, then modify that from there.  Before creating any new branches, all the commits and code I pasted in from project 3 was in the master branch.
 <br>
 <br>
+I did it this way because I did not realize that when pushing changes to GitHub from PyCharm, it only pushes the current branch, and no branches prior to that.
+<br>
+<br>
 This project is licensed under the GitHub MIT License.  See the LICENSE.txt file for the full context of the license.
