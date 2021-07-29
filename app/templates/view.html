@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="card" class="m-5 p-2">
+    <h5 class="card-title">{{ player.plName }}</h5>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{ player.plTeam }}</li>
+        <li class="list-group-item">{{ player.plPosition }}</li>
+        <li class="list-group-item">{{ player.plHeight }}</li>
+        <li class="list-group-item">{{ player.plWeight }}</li>
+        <li class="list-group-item">{{ player.plAge }}</li>
+    </ul>
+    <div class="card-body">
+        <a href="/edit/{{player.id}}" class="card-link btn btn-primary">Edit</a>
+    </div>
+</div>
+<form action="/delete/{{player.id}}" method="post"><button type="submit" class="btn btn-danger">Delete</button></form>
+
+
+{% endblock %}
