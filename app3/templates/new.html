@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/player/new" method="POST">
+        <div class="row">
+        <div class="col">
+            <label for="plName">Player Name</label>
+            <input id="plName" type="text" class="form-control" placeholder="Player Name" name="plName">
+        </div>
+        <div class="col">
+            <label for="plTeam">Team</label>
+            <input id="plTeam" type="text" class="form-control" placeholder="Team"
+                   name="plTeam">
+        </div>
+        <div class="col">
+            <label for="plPosition">Position</label>
+            <input id="plPosition" type="text" class="form-control" placeholder="Position" name="plPosition">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label for="plHeight">Height</label>
+            <input id="plHeight" type="text" class="form-control" placeholder="Height" name="plHeight">
+        </div>
+        <div class="col">
+            <label for="plWeight">Weight</label>
+            <input id="plWeight" type="text" class="form-control" placeholder="Weight" name="plWeight">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="plAge">Age</label>
+
+            <input id="plAge" type="text" class="form-control" placeholder="Age" name="plAge">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Add this record</button>
+
+</form>
+
+{% endblock %}

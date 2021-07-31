@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/edit/{{player.id}}" method="post">
+    <div class="row">
+        <div class="col">
+            <label for="plName">Player Name</label>
+            <input id="plName" type="text" class="form-control" placeholder="Player Name" name="plName" value="{{player.plName}}">
+        </div>
+        <div class="col">
+            <label for="plTeam">Team</label>
+            <input id="plTeam" type="text" class="form-control" placeholder="Team"
+                   name="plTeam" value="{{player.plTeam}}">
+        </div>
+        <div class="col">
+            <label for="plPosition">Position</label>
+            <input id="plPosition" type="text" class="form-control" placeholder="Position" name="plPosition" value="{{player.plPosition}}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label for="plHeight">Height</label>
+            <input id="plHeight" type="text" class="form-control" placeholder="Height" name="plHeight" value="{{player.plHeight}}">
+        </div>
+        <div class="col">
+            <label for="plWeight">Weight</label>
+            <input id="plWeight" type="text" class="form-control" placeholder="Weight" name="plWeight" value="{{player.plWeight}}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="plAge">Age</label>
+
+            <input id="plAge" type="text" class="form-control" placeholder="Age"
+                   name="plAge" value="{{player.plAge}}">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+
+</form>
+{% endblock %}
