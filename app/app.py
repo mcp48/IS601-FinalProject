@@ -3,6 +3,7 @@ from flask import Flask, request, Response, redirect
 from flask import render_template
 from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
+from forms import SignupForm
 
 app = Flask(__name__, template_folder="templates")
 mysql = MySQL(cursorclass=DictCursor)
@@ -78,7 +79,7 @@ def api_browse() -> str:
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM mlbPlayers')
     result = cursor.fetchall()
-    json_result = json.dumps(result);
+    json_result = json.dumps(result)
     resp = Response(json_result, status=200, mimetype='application/json')
     return resp
 
@@ -88,7 +89,7 @@ def api_retrieve(player_id) -> str:
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM mlbPlayers WHERE id=%s', player_id)
     result = cursor.fetchall()
-    json_result = json.dumps(result);
+    json_result = json.dumps(result)
     resp = Response(json_result, status=200, mimetype='application/json')
     return resp
 
@@ -133,6 +134,17 @@ def api_delete(player_id) -> str:
     mysql.get_db().commit()
     resp = Response(status=200, mimetype='application/json')
     return resp
+
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup_page():
+    return render_template(
+        '/signup.html',
+        title='Create an Account | Flask-Login Tutorial.',
+        form=SignupForm(),
+        template='signup-page',
+        body="Sign up for a user account."
+    )
 
 
 if __name__ == '__main__':

@@ -1,6 +1,0 @@
-Flask
-flask-mysql
-simplejson
-flask-wtf
-wtforms
-email_validator
