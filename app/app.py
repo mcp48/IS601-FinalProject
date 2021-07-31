@@ -1,5 +1,5 @@
 import simplejson as json
-from flask import Flask, request, Response, redirect
+from flask import Flask, request, Response, redirect, url_for
 from flask import render_template
 from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
@@ -7,7 +7,8 @@ from forms import SignupForm
 
 app = Flask(__name__,
             template_folder="templates",
-            static_folder="static")
+            static_folder="static",
+            static_url_path='')
 
 mysql = MySQL(cursorclass=DictCursor)
 
@@ -116,7 +117,6 @@ def api_edit(player_id) -> str:
 
 @app.route('/api/v1/players', methods=['POST'])
 def api_add() -> str:
-
     content = request.json
 
     cursor = mysql.get_db().cursor()
@@ -150,6 +150,17 @@ def signup_page():
         template='signup-page',
         body="Sign up for a user account."
     )
+
+
+@app.route("/signin")
+def dashboard():
+    # This had to serve a static page b/c of how tutorial made the route
+    return redirect('/dashboard.html')
+
+
+@app.route("/login")
+def login():
+    return redirect(url_for('dashboard'))
 
 
 if __name__ == '__main__':
