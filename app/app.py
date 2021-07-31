@@ -166,7 +166,7 @@ def login():
 @app.errorhandler(404)
 def not_found(arg):
     """Page not found."""
-    return render_template('/404.html', title='404 error.', message='Page Not Found')
+    return render_template('404.html', title='404 error.', message='Page Not Found')
 
 
 @app.errorhandler(400)
