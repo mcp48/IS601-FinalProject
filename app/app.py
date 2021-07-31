@@ -8,6 +8,8 @@ from forms import SignupForm
 app = Flask(__name__, template_folder="templates")
 mysql = MySQL(cursorclass=DictCursor)
 
+app.config.from_object('config.Config')
+
 
 @app.route('/', methods=['GET'])
 def index():
