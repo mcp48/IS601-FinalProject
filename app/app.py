@@ -155,7 +155,7 @@ def api_delete(player_id) -> str:
 def signup_page():
     return render_template(
         '/signup.html',
-        title='Create an Account | Flask-Login Tutorial.',
+        title='Create an Account.',
         form=SignupForm(),
         template='signup-page',
         body="Sign up for a user account."
