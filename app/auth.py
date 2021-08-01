@@ -1,9 +1,11 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_user, LoginManager
+from flask_sqlalchemy import SQLAlchemy
 from .forms import SignupForm, LoginForm
 from .models import User
 
 login_manager = LoginManager()
+db = SQLAlchemy()
 
 auth_bp = Blueprint(
     'auth_bp', __name__,
