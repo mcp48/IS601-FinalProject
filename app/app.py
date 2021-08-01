@@ -163,9 +163,8 @@ def signup_page():
     )
 
 
-@app.route("/signin")
-def dashboard():
-    # This had to serve a static page b/c of how tutorial made the route
+@app.route("/login")
+def login():
     return render_template(
         '/login.jinja2',
         title='Login.',
@@ -173,11 +172,6 @@ def dashboard():
         template='login-page',
         body="Log in to your user account."
     )
-
-
-@app.route("/login")
-def login():
-    return redirect(url_for('dashboard'))
 
 
 @app.errorhandler(404)
