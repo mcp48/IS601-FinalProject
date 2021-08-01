@@ -22,6 +22,7 @@ app.config['MYSQL_DATABASE_PORT'] = 3306
 app.config['MYSQL_DATABASE_DB'] = 'mlbPlayerData'
 mysql.init_app(app)
 
+
 # db.init_app(app)
 # mysql.init_app(app)
 
@@ -160,6 +161,17 @@ def signup_page():
         form=SignupForm(),
         template='signup-page',
         body="Sign up for a user account."
+    )
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login_page():
+    return render_template(
+        '/login.html',
+        title='Create an Account.',
+        form=LoginForm,
+        template='login-page',
+        body="Log in to your account."
     )
 
 
