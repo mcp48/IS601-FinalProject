@@ -4,12 +4,23 @@ from flask import render_template
 from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
 from forms import SignupForm
+from flask_sqlalchemy import SQLAlchemy
+
+# db = SQLAlchemy()
 
 app = Flask(__name__)
 
 mysql = MySQL(cursorclass=DictCursor)
 
-app.config.from_object('config.Config')
+app.config['MYSQL_DATABASE_HOST'] = 'db'
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
+app.config['MYSQL_DATABASE_PORT'] = 3306
+app.config['MYSQL_DATABASE_DB'] = 'mlbPlayerData'
+mysql.init_app(app)
+
+# db.init_app(app)
+# mysql.init_app(app)
 
 
 @app.route('/', methods=['GET'])
