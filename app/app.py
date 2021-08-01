@@ -193,7 +193,7 @@ def dashboard():
 def logout():
     """User log-out logic."""
     logout_user()
-    return redirect(url_for('auth_bp.login'))
+    return redirect(url_for('login.jinja2'))
 
 
 @app.errorhandler(404)
