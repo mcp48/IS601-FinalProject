@@ -6,3 +6,4 @@ wtforms
 email_validator
 python-dotenv
 flask-sqlalchemy
+flask-login
