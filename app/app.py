@@ -156,7 +156,7 @@ def api_delete(player_id) -> str:
 @app.route('/signup', methods=['GET', 'POST'])
 def signup_page():
     return render_template(
-        '/signup.html',
+        '/signup.jinja2',
         title='Create an Account.',
         form=SignupForm(),
         template='signup-page',
