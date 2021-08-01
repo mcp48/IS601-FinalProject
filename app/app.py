@@ -5,7 +5,7 @@ from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
 from forms import SignupForm
 
-app = Flask(__name__,)
+app = Flask(__name__)
 
 mysql = MySQL(cursorclass=DictCursor)
 
