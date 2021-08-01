@@ -4,6 +4,7 @@ from flask import render_template
 from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
 from forms import SignupForm
+from forms import LoginForm
 from flask_sqlalchemy import SQLAlchemy
 
 # db = SQLAlchemy()
@@ -165,7 +166,13 @@ def signup_page():
 @app.route("/signin")
 def dashboard():
     # This had to serve a static page b/c of how tutorial made the route
-    return redirect('/dashboard.html')
+    return render_template(
+        '/login.jinja2',
+        title='Login.',
+        form=LoginForm(),
+        template='login-page',
+        body="Log in to your user account."
+    )
 
 
 @app.route("/login")
