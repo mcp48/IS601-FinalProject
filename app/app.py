@@ -12,6 +12,8 @@ app = Flask(__name__)
 
 mysql = MySQL(cursorclass=DictCursor)
 
+app.config.from_object('config.Config')
+
 app.config['MYSQL_DATABASE_HOST'] = 'db'
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
