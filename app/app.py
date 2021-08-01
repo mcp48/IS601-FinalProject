@@ -5,7 +5,7 @@ from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
 from forms import SignupForm
 from forms import LoginForm
-from flask_login import current_user, login_required, logout_user
+from flask_login import current_user, login_required, logout_user, LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
 # db = SQLAlchemy()
@@ -25,12 +25,6 @@ mysql.init_app(app)
 
 # db.init_app(app)
 # mysql.init_app(app)
-
-main_bp = Blueprint(
-    'main_bp', __name__,
-    template_folder='templates',
-    static_folder='static'
-)
 
 
 @app.route('/', methods=['GET'])
@@ -181,7 +175,7 @@ def login_page():
     )
 
 
-@main_bp.route('/', methods=['GET'])
+@app.route('/', methods=['GET'])
 @login_required
 def dashboard():
     """Logged-in User Dashboard."""
@@ -194,7 +188,7 @@ def dashboard():
     )
 
 
-@main_bp.route("/logout")
+@app.route("/logout")
 @login_required
 def logout():
     """User log-out logic."""
