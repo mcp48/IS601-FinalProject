@@ -1,10 +1,11 @@
 import simplejson as json
-from flask import Flask, request, Response, redirect, url_for
+from flask import Blueprint, Flask, request, Response, redirect, url_for
 from flask import render_template
 from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
 from forms import SignupForm
 from forms import LoginForm
+from flask_login import current_user, login_required, logout_user
 from flask_sqlalchemy import SQLAlchemy
 
 # db = SQLAlchemy()
@@ -22,9 +23,14 @@ app.config['MYSQL_DATABASE_PORT'] = 3306
 app.config['MYSQL_DATABASE_DB'] = 'mlbPlayerData'
 mysql.init_app(app)
 
-
 # db.init_app(app)
 # mysql.init_app(app)
+
+main_bp = Blueprint(
+    'main_bp', __name__,
+    template_folder='templates',
+    static_folder='static'
+)
 
 
 @app.route('/', methods=['GET'])
@@ -173,6 +179,27 @@ def login_page():
         template='login-page',
         body="Log in to your account."
     )
+
+
+@main_bp.route('/', methods=['GET'])
+@login_required
+def dashboard():
+    """Logged-in User Dashboard."""
+    return render_template(
+        'dashboard.jinja2',
+        title='Flask-Login Tutorial.',
+        template='dashboard-template',
+        current_user=current_user,
+        body="You are now logged in!"
+    )
+
+
+@main_bp.route("/logout")
+@login_required
+def logout():
+    """User log-out logic."""
+    logout_user()
+    return redirect(url_for('auth_bp.login'))
 
 
 @app.errorhandler(404)
