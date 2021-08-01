@@ -163,17 +163,6 @@ def signup_page():
     )
 
 
-@app.route("/login")
-def login():
-    return render_template(
-        '/login.jinja2',
-        title='Login.',
-        form=LoginForm(),
-        template='login-page',
-        body="Log in to your user account."
-    )
-
-
 @app.errorhandler(404)
 def not_found(arg):
     """Page not found."""
