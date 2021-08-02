@@ -166,7 +166,7 @@ def signup_page():
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
     return render_template(
-        '/login.html',
+        '/login.jinja2',
         title='Create an Account.',
         form=LoginForm,
         template='login-page',
