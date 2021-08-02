@@ -1,14 +1,11 @@
 import simplejson as json
-from flask import Blueprint, Flask, request, Response, redirect, url_for
-from flask import render_template, session
+from flask import Flask, request, Response, redirect, url_for
+from flask import render_template
 from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
 from forms import SignupForm
 from forms import LoginForm
-from flask_login import current_user, login_required, logout_user, LoginManager
-from flask_sqlalchemy import SQLAlchemy
-
-# db = SQLAlchemy()
+from flask_login import current_user, login_required, logout_user
 
 app = Flask(__name__)
 
@@ -22,10 +19,6 @@ app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
 app.config['MYSQL_DATABASE_PORT'] = 3306
 app.config['MYSQL_DATABASE_DB'] = 'mlbPlayerData'
 mysql.init_app(app)
-
-
-# db.init_app(app)
-# mysql.init_app(app)
 
 
 @app.route('/', methods=['GET'])
@@ -168,7 +161,7 @@ def signup_page():
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
     return render_template(
-        '/login.jinja2',
+        '/login.html',
         title='Create an Account.',
         form=LoginForm,
         template='login-page',
@@ -194,25 +187,7 @@ def dashboard():
 def logout():
     """User log-out logic."""
     logout_user()
-    return render_template(
-        '/login.jinja2',
-        title='Create an Account.',
-        form=LoginForm,
-        template='login-page',
-        body="Log in to your account."
-    )
-
-
-@app.route("/session", methods=["GET"])
-@login_required
-def session_view():
-    """Display session variable value."""
-    return render_template(
-        "session.jinja2",
-        title="Flask-Session Tutorial.",
-        template="dashboard-template",
-        session_variable=str(session["redis_test"]),
-    )
+    return redirect(url_for('login.html'))
 
 
 @app.errorhandler(404)
