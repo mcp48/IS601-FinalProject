@@ -19,7 +19,7 @@
     <form method="POST" action="/login">
       {{ form.csrf_token }}
 
-      <fieldset class="email">
+      <fieldset class="form-field">
         {{ form.email.label }}
         {{ form.email }}
         {% if form.email.errors %}
@@ -30,7 +30,7 @@
         {% endif %}
       </fieldset>
 
-      <fieldset class="password">
+      <fieldset class="form-field">
         {{ form.password.label }}
         {{ form.password }}
         {% if form.email.errors %}
