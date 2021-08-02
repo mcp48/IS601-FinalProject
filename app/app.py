@@ -168,7 +168,7 @@ def signup_page():
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
     return render_template(
-        '/login.html',
+        '/login.jinja2',
         title='Create an Account.',
         form=LoginForm,
         template='login-page',
@@ -194,7 +194,13 @@ def dashboard():
 def logout():
     """User log-out logic."""
     logout_user()
-    return redirect(url_for('login.html'))
+    return render_template(
+        '/login.jinja2',
+        title='Create an Account.',
+        form=LoginForm,
+        template='login-page',
+        body="Log in to your account."
+    )
 
 
 @app.route("/session", methods=["GET"])
