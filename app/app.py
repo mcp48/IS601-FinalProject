@@ -155,7 +155,7 @@ def api_delete(player_id) -> str:
 @app.route('/signup', methods=['GET', 'POST'])
 def signup_page():
     return render_template(
-        '/signup.jinja2',
+        'signup.jinja2',
         title='Create an Account.',
         form=SignupForm(),
         template='signup-page',
@@ -191,7 +191,7 @@ def session_view():
 def logout():
     """User log-out logic."""
     logout_user()
-    return redirect(url_for("auth_bp.login"))
+    return render_template('login.jinja2')
 
 
 @app.errorhandler(404)
