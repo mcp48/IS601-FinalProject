@@ -1,6 +1,6 @@
 import simplejson as json
 from flask import Blueprint, Flask, request, Response, redirect, url_for
-from flask import render_template
+from flask import render_template, session
 from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
 from forms import SignupForm
@@ -22,6 +22,7 @@ app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
 app.config['MYSQL_DATABASE_PORT'] = 3306
 app.config['MYSQL_DATABASE_DB'] = 'mlbPlayerData'
 mysql.init_app(app)
+
 
 # db.init_app(app)
 # mysql.init_app(app)
@@ -194,6 +195,18 @@ def logout():
     """User log-out logic."""
     logout_user()
     return redirect(url_for('login.html'))
+
+
+@app.route("/session", methods=["GET"])
+@login_required
+def session_view():
+    """Display session variable value."""
+    return render_template(
+        "session.jinja2",
+        title="Flask-Session Tutorial.",
+        template="dashboard-template",
+        session_variable=str(session["redis_test"]),
+    )
 
 
 @app.errorhandler(404)

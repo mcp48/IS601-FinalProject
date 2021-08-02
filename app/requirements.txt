@@ -8,4 +8,4 @@ python-dotenv
 flask-sqlalchemy
 flask-login
 ddtrace
-flask-session
+flask-session redis
