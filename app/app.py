@@ -5,11 +5,14 @@ from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
 from forms import SignupForm
 from forms import LoginForm
-from flask_login import current_user, login_required, logout_user
+from flask_login import current_user, login_required, logout_user, LoginManager
+from flask_session import Session
 
 app = Flask(__name__)
 
 mysql = MySQL(cursorclass=DictCursor)
+
+sess = Session()
 
 app.config.from_object('config.Config')
 
@@ -19,6 +22,8 @@ app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
 app.config['MYSQL_DATABASE_PORT'] = 3306
 app.config['MYSQL_DATABASE_DB'] = 'mlbPlayerData'
 mysql.init_app(app)
+
+sess.init_app(app)
 
 
 @app.route('/', methods=['GET'])
