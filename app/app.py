@@ -5,7 +5,7 @@ from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
 from forms import SignupForm
 from forms import LoginForm
-from flask_login import current_user, login_required, logout_user, LoginManager
+from flask_login import current_user, login_required, logout_user
 from flask_session import Session
 
 app = Flask(__name__)
