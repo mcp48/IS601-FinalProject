@@ -1,5 +1,5 @@
 import simplejson as json
-from flask import Flask, request, Response, redirect, url_for
+from flask import Flask, request, Response, redirect, url_for, session
 from flask import render_template
 from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
@@ -171,6 +171,18 @@ def login_page():
         form=LoginForm,
         template='login-page',
         body="Log in to your account."
+    )
+
+
+@app.route("/session", methods=["GET"])
+@login_required
+def session_view():
+    """Display session variable value."""
+    return render_template(
+        "session.jinja2",
+        title="Flask-Session Tutorial.",
+        template="dashboard-template",
+        session_variable=str(session["redis_test"]),
     )
 
 
