@@ -174,25 +174,12 @@ def login_page():
     )
 
 
-@app.route('/', methods=['GET'])
-@login_required
-def dashboard():
-    """Logged-in User Dashboard."""
-    return render_template(
-        'dashboard.jinja2',
-        title='Flask-Login Tutorial.',
-        template='dashboard-template',
-        current_user=current_user,
-        body="You are now logged in!"
-    )
-
-
 @app.route("/logout")
 @login_required
 def logout():
     """User log-out logic."""
     logout_user()
-    return redirect(url_for('login.html'))
+    return redirect(url_for("auth_bp.login"))
 
 
 @app.errorhandler(404)
