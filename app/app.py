@@ -27,7 +27,7 @@ def index():
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM mlbPlayers')
     result = cursor.fetchall()
-    return render_template('index.html', title='Home', user=user, players=result)
+    return render_template('index.jinja2', title='Home', user=user, players=result)
 
 
 @app.route('/view/<int:player_id>', methods=['GET'])
@@ -35,19 +35,23 @@ def record_view(player_id):
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM mlbPlayers WHERE id=%s', player_id)
     result = cursor.fetchall()
-    return render_template('view.html', title='View Form', player=result[0])
+    return render_template('view.jinja2', title='View Form', player=result[0])
 
 
 @app.route('/edit/<int:player_id>', methods=['GET'])
+@login_required
 def form_edit_get(player_id):
+    session["redis_test"] = "This is a session variable."
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM mlbPlayers WHERE id=%s', player_id)
     result = cursor.fetchall()
-    return render_template('edit.html', title='Edit Form', player=result[0])
+    return render_template('edit.jinja2', title='Edit Form', player=result[0])
 
 
 @app.route('/edit/<int:player_id>', methods=['POST'])
+@login_required
 def form_update_post(player_id):
+    session["redis_test"] = "This is a session variable."
     cursor = mysql.get_db().cursor()
     inputData = (request.form.get('plName'), request.form.get('plTeam'), request.form.get('plPosition'),
                  request.form.get('plHeight'), request.form.get('plWeight'),
@@ -60,12 +64,15 @@ def form_update_post(player_id):
 
 
 @app.route('/player/new', methods=['GET'])
+@login_required
 def form_insert_get():
-    return render_template('new.html', title='New MLB Player Form')
+    session["redis_test"] = "This is a session variable."
+    return render_template('new.jinja2', title='New MLB Player Form')
 
 
 @app.route('/player/new', methods=['POST'])
 def form_insert_post():
+    session["redis_test"] = "This is a session variable."
     cursor = mysql.get_db().cursor()
     inputData = (request.form.get('plName'), request.form.get('plTeam'), request.form.get('plPosition'),
                  request.form.get('plHeight'), request.form.get('plWeight'),
@@ -78,7 +85,9 @@ def form_insert_post():
 
 
 @app.route('/delete/<int:player_id>', methods=['POST'])
+@login_required
 def form_delete_post(player_id):
+    session["redis_test"] = "This is a session variable."
     cursor = mysql.get_db().cursor()
     sql_delete_query = """DELETE FROM mlbPlayers WHERE id = %s """
     cursor.execute(sql_delete_query, player_id)
@@ -175,7 +184,7 @@ def session_view():
     """Display session variable value."""
     return render_template(
         "session.jinja2",
-        title="Flask-Session Tutorial.",
+        title="MLB Players",
         template="dashboard-template",
         session_variable=str(session["redis_test"]),
     )
