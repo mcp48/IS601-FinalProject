@@ -1,5 +1,9 @@
 version: "2"
 services:
+  redis:
+    image: redis:alpine
+    volumes:
+      - redisdata:/data
   app:
     build: ./app
     container_name: "Flask_App_Final"
