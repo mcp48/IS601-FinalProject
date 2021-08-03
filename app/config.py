@@ -20,6 +20,6 @@ class Config:
     MYSQL_DATABASE_PORT = 3306
     MYSQL_DATABASE_DB = environ.get("MYSQL_DATABASE_DB")
 
-#    REDIS_URI = environ.get("REDIS_URI")
-#   SESSION_TYPE = "redis"
-#    SESSION_REDIS = redis.from_url(REDIS_URI)
+    REDIS_URI = environ.get("REDIS_URI")
+    SESSION_TYPE = "redis"
+    SESSION_REDIS = redis.from_url(REDIS_URI)
